@@ -5,7 +5,7 @@
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <div class="row">
                 <div class="navbar col-4">
-                    <img src="./assets/csbookshoplogo.png" class="rounded mx-auto d-block" width="80px" />
+                    <img src="https://raw.githubusercontent.com/624235032/image01/main/book.png" class="rounded mx-auto d-block" width="60px" />
                 </div>
                 <div class="navbar col text-left">
                     <span class="navbar-brand">IT<br />Book Shop</span>
@@ -21,7 +21,7 @@
                     <router-link class="nav-link" to="/">Books <span class="sr-only">(current)</span></router-link> |
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/authors">Authors</router-link>
+                    <router-link class="nav-link" to="/students">Students</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/publishers">Publishers</router-link>
@@ -74,7 +74,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: #020724;
 }
 
 #nav {
@@ -83,7 +83,7 @@ body {
 
 #nav a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #020724;
 }
 
 #nav a.router-link-exact-active {

@@ -77,7 +77,7 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 export default {
     name: "BookEdit",
     data() {
@@ -89,8 +89,7 @@ export default {
         async SaveBook() {
 
             if (confirm("Do you want to save?")) {
-
-                //HW: Code for sending edit data to API
+                await axios.put(this.$apiUrl + "book/" + this.$route.params.bookid , this.book);
                 await this.$router.push('/');
             }
 
@@ -105,6 +104,8 @@ export default {
     async mounted() {
 
         //Code for get book detail from API
+        const response = await axios.get(this.$apiUrl + "book/" + this.$route.params.bookid);
+        this.book = await response.data.data[0];
 
     },
 }
