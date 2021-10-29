@@ -5,7 +5,7 @@
     <div class="container ">
         <div class="row">
             <div class="col-lg-4">
-                <img v-bind:src="book.thumbnailUrl" width="200px" /><br />
+                <img v-bind:src="require(`@/assets/bookimages/`+ book.thumbnailUrl)" width="200px" /><br />
             </div>
             <div class="col-lg-8">
 
@@ -35,6 +35,10 @@
                     <div>{{book.pageCount}}</div>
                 </div>
                 <div class="row">
+                    <div class="col-2 d-flex justify-content-start"><b>Published Date:</b></div>
+                    <div>{{book.publishedDate | formatDate }}</div>
+                </div>
+                <div class="row">
                     <div class="col-2 d-flex justify-content-start"><b>Description:</b></div>
                     <div class="col-9">
                         <p class="text-justify">{{book.shortDescription}}</p>
@@ -51,6 +55,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     name: "BookItem",
     props: ["book"],
@@ -68,6 +73,16 @@ export default {
             }
 
         },
+    },
+    filters: {
+        formatDate(value) {
+            if (value) {
+                //moment.locale('th');
+                //return moment(String(value)).format('L')
+                //return moment(String(value)).format('DD/MM/YYYY')
+                return moment(String(value)).format('D MMMM YYYY')
+            }
+        }
     }
 }
 </script>
