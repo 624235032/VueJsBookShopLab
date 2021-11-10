@@ -37,9 +37,24 @@ export default {
 
     },
     async mounted() {
+        let accessToken= await localStorage.getItem('accessToken')
+        
+        if (await accessToken) {
+            try {
+                //Code for this page
+                 const response = await axios.get(this.$apiUrl + "student", { headers: {"Authorization" : `bearer ${accessToken}`} });
+                 this.student = await response.data.data;
+
+
+             }
+            catch{
+                this.$router.push('/login');
+            }
+        }else{
+            this.$router.push('/login');
+        }
         //Code for GET students from API
-        const response = await axios.get(this.$apiUrl + "student");
-        this.student = await response.data.data;
+       
         
     },
     methods: {

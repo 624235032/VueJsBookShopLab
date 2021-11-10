@@ -35,7 +35,7 @@ export default {
     methods: {
         EditStudent(number) {
             //Send bookid to Edit Book page
-            this.$router.push('/editstudent/' + number )
+            this.$router.push('/editstudent/' + number)
         },
         DeleteStudent(number) {
 
