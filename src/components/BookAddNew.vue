@@ -127,9 +127,26 @@ export default {
                     this.book.thumbnailUrl = await bookimage
                     await this.$refs.bookimage.UploadImage();
                 }
+
+                let accessToken= await localStorage.getItem('accessToken')
+        
+        if (await accessToken) {
+            try {
+                //Code for this page
+                await axios.post(this.$apiUrl + "book", this.book, { headers: {"Authorization" : `bearer ${accessToken}`} });
+                await this.$router.push('/books');
+
+
+             }
+            catch{
+                this.$router.push('/login');
+            }
+        }else{
+            this.$router.push('/login');
+        }
+
                 
-                await axios.post(this.$apiUrl + "book", this.book);
-                await this.$router.push('/');
+
             }
             
 

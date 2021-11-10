@@ -37,20 +37,52 @@ export default {
 
     },
     async mounted() {
-        //Code for GET Books from API
-        const response = await axios.get(this.$apiUrl + "books");
-        this.books = await response.data.data;
-        this.booksearch= this.books
+
+            let accessToken= await localStorage.getItem('accessToken')
+        
+        if (await accessToken) {
+            try {
+                //Code for this page
+                //Code for GET Books from API
+                const response = await axios.get(this.$apiUrl + "books", { headers: {"Authorization" : `bearer ${accessToken}`} });
+                this.books = await response.data.data;
+                //this.booksearch= this.books
+
+
+             }
+            catch{
+                this.$router.push('/login');
+            }
+        }else{
+            this.$router.push('/login');
+        }
+        
+        
     },
     methods: {
         SearchBook: function (searchvalue) {
             this.search = searchvalue;
         },
         async DeleteBook(bookid) {
-            await axios.delete(this.$apiUrl + "book/" + bookid);
-            var bookIndex= this.books.findIndex(x => x.bookid === bookid);
-            this.books.splice(bookIndex, 1);
-            this.booksearch=this.books;
+             let accessToken= await localStorage.getItem('accessToken')
+        
+        if (await accessToken) {
+            try {
+                //Code for this page
+                 await axios.delete(this.$apiUrl + "book/" + bookid, { headers: {"Authorization" : `bearer ${accessToken}`} });
+                 var bookIndex= this.books.findIndex(x => x.bookid === bookid);
+                 this.books.splice(bookIndex, 1);
+                 this.booksearch=this.books;
+
+
+             }
+            catch{
+                this.$router.push('/login');
+            }
+        }else{
+            this.$router.push('/login');
+        }
+            
         },
 
     },

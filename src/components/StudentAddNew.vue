@@ -46,16 +46,34 @@ export default {
     },
     methods: {
         async SaveStudent() {
+            let accessToken= await localStorage.getItem('accessToken')
+        
+        if (await accessToken) {
+            try {
+                //Code for this page
+                await axios.post(this.$apiUrl + "student", this.student, { headers: {"Authorization" : `bearer ${accessToken}`} });
+                await this.$router.push('/students');
+
+
+             }
+            catch{
+                this.$router.push('/login');
+            }
+        }else{
+            this.$router.push('/login');
+        }
             
-            await axios.post(this.$apiUrl + "student", this.student);
-            await this.$router.push('/students');
+
         
 
         },
+
+        
         Cancel() {
             if (confirm("Do you want to cancel adding this student?")) {
 
                 this.$router.push('/students');
+            
 
             }
 
